@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Launcher
@@ -25,4 +26,5 @@ namespace Launcher
             base.OnStartup(e);
         }
     }
+
 }

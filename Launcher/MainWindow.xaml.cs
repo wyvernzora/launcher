@@ -33,13 +33,11 @@ namespace Launcher
 
             InitializeComponent();
             AttachEventHandlers();
-
-            // Enable Shadow
-            Utilities.DropShadowToWindow(this);
         }
 
         void AttachEventHandlers()
         {
+            Loaded += (@s, e) => SearchBox.Focus();
             Deactivated += (@s, e) => Close();
         }
 
