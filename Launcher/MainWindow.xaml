@@ -34,11 +34,16 @@
 							Margin="2,2" Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=SearchBox}"/>
 						<TextBox x:Name="SearchBox" TextWrapping="Wrap" Margin="0" VerticalAlignment="Center" FontSize="16" FontFamily="Segoe UI Semilight" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0"/>
 					</Grid>
-					<Grid x:Name="menuGrid" Grid.Column="2" Margin="0" Opacity="0.3" Width="25" Height="25">
+
+					<Button Name="menuButton" Grid.Column="2" Margin="0" Width="25" Height="25" Style="{DynamicResource BorderlessFadeInButton}" Background="{x:Null}" BorderBrush="{x:Null}">
+						<Grid>
 						<Rectangle Fill="Black" HorizontalAlignment="Center" Height="4" Margin="0,0,0,12" VerticalAlignment="Center" Width="20" StrokeThickness="0"/>
 						<Rectangle Fill="Black" HorizontalAlignment="Center" Height="4" Margin="0" VerticalAlignment="Center" Width="20" StrokeThickness="0"/>
 						<Rectangle Fill="Black" HorizontalAlignment="Center" Height="4" Margin="0,12,0,0" VerticalAlignment="Center" Width="20" StrokeThickness="0"/>
-					</Grid>
+						</Grid>
+					</Button>
+
+					
 					<Ellipse HorizontalAlignment="Left" Height="13.416" Margin="21.083,15.917,0,0" StrokeThickness="2" VerticalAlignment="Top" Width="13.167" Stroke="#FF838383"/>
 					<Rectangle HorizontalAlignment="Left" Height="3.446" Margin="15.779,27.897,0,0" StrokeThickness="2" VerticalAlignment="Top" Width="10.016" Fill="#FF838383" RenderTransformOrigin="0.5,0.5" RadiusX="2" RadiusY="2">
 						<Rectangle.RenderTransform>
@@ -53,123 +58,7 @@
 				</Grid>
                 
 			</Border>
-			<Grid x:Name="contentGrid" Grid.Row="1" Background="#FBFBFB">
-				<WPFSpark:PivotPanel Name="ContentPivot" HeaderHeight="16" HorizontalAlignment="Stretch" ClipToBounds="True">
-					
-					<WPFSpark:PivotItem>
-						<WPFSpark:PivotItem.PivotHeader>
-							<WPFSpark:PivotHeaderControl FontFamily="Segoe UI Light" FontSize="24"
-								ActiveForeground="Black" InactiveForeground="#FF838383">
-									<Rectangle Width="40" Height="6" Fill="Green" Margin="5" />
-							</WPFSpark:PivotHeaderControl>
-						</WPFSpark:PivotItem.PivotHeader>
-						<WPFSpark:PivotItem.PivotContent>
-							<WPFSpark:PivotContentControl>
-								<Border />
-							</WPFSpark:PivotContentControl>
-						</WPFSpark:PivotItem.PivotContent>
-					</WPFSpark:PivotItem>
-				
-					<WPFSpark:PivotItem>
-						<WPFSpark:PivotItem.PivotHeader>
-							<WPFSpark:PivotHeaderControl FontFamily="Segoe UI Light" FontSize="24"
-								ActiveForeground="Black" InactiveForeground="#FF838383">
-									<Rectangle Width="40" Height="6" Fill="Blue" Margin="5" />
-							</WPFSpark:PivotHeaderControl>
-						</WPFSpark:PivotItem.PivotHeader>
-						<WPFSpark:PivotItem.PivotContent>
-							<WPFSpark:PivotContentControl>
-								<Border Background="Blue" />
-							</WPFSpark:PivotContentControl>
-						</WPFSpark:PivotItem.PivotContent>
-					</WPFSpark:PivotItem>
-
-					<WPFSpark:PivotItem>
-						<WPFSpark:PivotItem.PivotHeader>
-							<WPFSpark:PivotHeaderControl FontFamily="Segoe UI Light" FontSize="24"
-								ActiveForeground="Black" InactiveForeground="#FF838383">
-									<Rectangle Width="40" Height="6" Fill="Red" Margin="5" />
-							</WPFSpark:PivotHeaderControl>
-						</WPFSpark:PivotItem.PivotHeader>
-						<WPFSpark:PivotItem.PivotContent>
-							<WPFSpark:PivotContentControl>
-								<Border Background="Green" />
-							</WPFSpark:PivotContentControl>
-						</WPFSpark:PivotItem.PivotContent>
-					</WPFSpark:PivotItem>
-
-					<WPFSpark:PivotItem>
-						<WPFSpark:PivotItem.PivotHeader>
-							<WPFSpark:PivotHeaderControl FontFamily="Segoe UI Light" FontSize="24"
-								ActiveForeground="Black" InactiveForeground="#FF838383">
-									<Rectangle Width="40" Height="6" Fill="Purple" Margin="5" />
-							</WPFSpark:PivotHeaderControl>
-						</WPFSpark:PivotItem.PivotHeader>
-						<WPFSpark:PivotItem.PivotContent>
-							<WPFSpark:PivotContentControl>
-								<Border Background="Yellow" />
-							</WPFSpark:PivotContentControl>
-						</WPFSpark:PivotItem.PivotContent>
-					</WPFSpark:PivotItem>
-
-					<WPFSpark:PivotItem>
-						<WPFSpark:PivotItem.PivotHeader>
-							<WPFSpark:PivotHeaderControl FontFamily="Segoe UI Light" FontSize="24"
-								ActiveForeground="Black" InactiveForeground="#FF838383">
-									<Rectangle Width="40" Height="6" Fill="DarkOrange" Margin="5" />
-							</WPFSpark:PivotHeaderControl>
-						</WPFSpark:PivotItem.PivotHeader>
-						<WPFSpark:PivotItem.PivotContent>
-							<WPFSpark:PivotContentControl>
-								<Border Background="Yellow" />
-							</WPFSpark:PivotContentControl>
-						</WPFSpark:PivotItem.PivotContent>
-					</WPFSpark:PivotItem>
-
-					<WPFSpark:PivotItem>
-						<WPFSpark:PivotItem.PivotHeader>
-							<WPFSpark:PivotHeaderControl FontFamily="Segoe UI Light" FontSize="24"
-								ActiveForeground="Black" InactiveForeground="#FF838383">
-									<Rectangle Width="40" Height="6" Fill="DarkCyan" Margin="5" />
-							</WPFSpark:PivotHeaderControl>
-						</WPFSpark:PivotItem.PivotHeader>
-						<WPFSpark:PivotItem.PivotContent>
-							<WPFSpark:PivotContentControl>
-								<Border Background="Yellow" />
-							</WPFSpark:PivotContentControl>
-						</WPFSpark:PivotItem.PivotContent>
-					</WPFSpark:PivotItem>
-
-					<WPFSpark:PivotItem>
-						<WPFSpark:PivotItem.PivotHeader>
-							<WPFSpark:PivotHeaderControl FontFamily="Segoe UI Light" FontSize="24"
-								ActiveForeground="Black" InactiveForeground="#FF838383">
-									<Rectangle Width="40" Height="6" Fill="#FFAE00AE" Margin="5" />
-							</WPFSpark:PivotHeaderControl>
-						</WPFSpark:PivotItem.PivotHeader>
-						<WPFSpark:PivotItem.PivotContent>
-							<WPFSpark:PivotContentControl>
-								<Border Background="Yellow" />
-							</WPFSpark:PivotContentControl>
-						</WPFSpark:PivotItem.PivotContent>
-					</WPFSpark:PivotItem>
-
-					<WPFSpark:PivotItem>
-						<WPFSpark:PivotItem.PivotHeader>
-							<WPFSpark:PivotHeaderControl FontFamily="Segoe UI Light" FontSize="24"
-								ActiveForeground="Black" InactiveForeground="#FF838383">
-									<Rectangle Width="40" Height="6" Fill="#FF00E41F" Margin="5" />
-							</WPFSpark:PivotHeaderControl>
-						</WPFSpark:PivotItem.PivotHeader>
-						<WPFSpark:PivotItem.PivotContent>
-							<WPFSpark:PivotContentControl>
-								<Border Background="Yellow" />
-							</WPFSpark:PivotContentControl>
-						</WPFSpark:PivotItem.PivotContent>
-					</WPFSpark:PivotItem>
-
-				</WPFSpark:PivotPanel>
-			</Grid>
+			<Grid x:Name="contentGrid" Grid.Row="1" Background="#FBFBFB"/>
 		</Grid>
 	</Border>
 </Window>

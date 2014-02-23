@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPFSpark;
 
 namespace Launcher
 {
@@ -22,11 +21,8 @@ namespace Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const Int32 Margin = 0;
+        private const Int32 WindowMargin = 0;
         
-        private PivotItem[] contentPages;
-        private Int32 activePageIndex = 0;
-
         public MainWindow()
         {
             // Set up window dimensions
@@ -41,13 +37,8 @@ namespace Launcher
 
         void AttachEventHandlers()
         {
-            Loaded += (@s, e) =>
-            {
-                SearchBox.Focus();
-                UpdateContentPages();
-            };
+            Loaded += (@s, e) => SearchBox.Focus();
             Deactivated += (@s, e) => Close();
-
         }
 
         void AdjustWindowLocation()
@@ -64,25 +55,19 @@ namespace Launcher
 
             // X axis
             if (location.X < workArea.X)
-                location.X = workArea.X + Margin;
+                location.X = workArea.X + WindowMargin;
             if (location.X + Width > workArea.X + workArea.Width)
-                location.X = workArea.X + workArea.Width - Width - Margin;
+                location.X = workArea.X + workArea.Width - Width - WindowMargin;
 
             // Y axis
             if (location.Y < workArea.Y)
-                location.Y = workArea.Y + Margin;
+                location.Y = workArea.Y + WindowMargin;
             if (location.Y + Height > workArea.Y + workArea.Height)
-                location.Y = workArea.Y + workArea.Height - Height - Margin;
+                location.Y = workArea.Y + workArea.Height - Height - WindowMargin;
 
 
             Left = location.X;
             Top = location.Y;
-        }
-
-        void UpdateContentPages()
-        {
-            contentPages = new PivotItem[ContentPivot.NotifiableChildren.Count];
-            ContentPivot.NotifiableChildren.CopyTo(contentPages, 0);
         }
     }
 }
