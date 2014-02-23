@@ -6,6 +6,10 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Launcher", "Launcher\Launcher.csproj", "{977E6386-C3CD-48C3-9E50-C3E3454BA6A9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{1E819844-742A-46A4-AC62-5A32C8E87127}"
+	ProjectSection(SolutionItems) = preProject
+		Assets\icon.ico = Assets\icon.ico
+		Assets\icon.svg = Assets\icon.svg
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A8EBC459-0CAD-461F-9142-6654B6038151}"
 	ProjectSection(SolutionItems) = preProject
