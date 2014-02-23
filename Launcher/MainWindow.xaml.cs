@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFSpark;
 
 namespace Launcher
 {
@@ -22,6 +23,9 @@ namespace Launcher
     public partial class MainWindow : Window
     {
         private const Int32 Margin = 0;
+        
+        private PivotItem[] contentPages;
+        private Int32 activePageIndex = 0;
 
         public MainWindow()
         {
@@ -37,8 +41,13 @@ namespace Launcher
 
         void AttachEventHandlers()
         {
-            Loaded += (@s, e) => SearchBox.Focus();
+            Loaded += (@s, e) =>
+            {
+                SearchBox.Focus();
+                UpdateContentPages();
+            };
             Deactivated += (@s, e) => Close();
+
         }
 
         void AdjustWindowLocation()
@@ -68,6 +77,12 @@ namespace Launcher
 
             Left = location.X;
             Top = location.Y;
+        }
+
+        void UpdateContentPages()
+        {
+            contentPages = new PivotItem[ContentPivot.NotifiableChildren.Count];
+            ContentPivot.NotifiableChildren.CopyTo(contentPages, 0);
         }
     }
 }
