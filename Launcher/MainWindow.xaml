@@ -1,7 +1,10 @@
 ﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" x:Name="window" mc:Ignorable="d" x:Class="Launcher.MainWindow"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		 x:Name="window" mc:Ignorable="d" x:Class="Launcher.MainWindow"
         Title="MainWindow" Height="520" Width="420"
         WindowStyle="None" ResizeMode="NoResize" 
         Background ="Transparent" AllowsTransparency="True" SnapsToDevicePixels="True">
@@ -18,7 +21,8 @@
 		<Grid x:Name="mainGrid" Background="White">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="50"/>
-				<RowDefinition Height="212*"/>
+				<RowDefinition/>
+				<RowDefinition Height="50"/>
 			</Grid.RowDefinitions>
             
 			<Border x:Name="headerWrapper" Grid.Row="0" BorderThickness="0, 0, 0, 1" BorderBrush="#E5E5E5">
@@ -35,11 +39,11 @@
 						<TextBox x:Name="SearchBox" TextWrapping="Wrap" Margin="0" VerticalAlignment="Center" FontSize="16" FontFamily="Segoe UI Semilight" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0"/>
 					</Grid>
 
-					<Button Name="menuButton" Grid.Column="2" Margin="0" Width="25" Height="25" Style="{DynamicResource BorderlessFadeInButton}" Background="{x:Null}" BorderBrush="{x:Null}">
+					<Button x:Name="menuButton" Grid.Column="2" Margin="0" Width="25" Height="25" Style="{DynamicResource BorderlessFadeInButton}" Background="{x:Null}" BorderBrush="{x:Null}">
 						<Grid>
-						<Rectangle Fill="Black" HorizontalAlignment="Center" Height="4" Margin="0,0,0,12" VerticalAlignment="Center" Width="20" StrokeThickness="0"/>
-						<Rectangle Fill="Black" HorizontalAlignment="Center" Height="4" Margin="0" VerticalAlignment="Center" Width="20" StrokeThickness="0"/>
-						<Rectangle Fill="Black" HorizontalAlignment="Center" Height="4" Margin="0,12,0,0" VerticalAlignment="Center" Width="20" StrokeThickness="0"/>
+							<Rectangle Fill="Black" HorizontalAlignment="Center" Height="4" Margin="0,0,0,12" VerticalAlignment="Center" Width="20" StrokeThickness="0"/>
+							<Rectangle Fill="Black" HorizontalAlignment="Center" Height="4" Margin="0" VerticalAlignment="Center" Width="20" StrokeThickness="0"/>
+							<Rectangle Fill="Black" HorizontalAlignment="Center" Height="4" Margin="0,12,0,0" VerticalAlignment="Center" Width="20" StrokeThickness="0"/>
 						</Grid>
 					</Button>
 
@@ -58,7 +62,26 @@
 				</Grid>
                 
 			</Border>
-			<Grid x:Name="contentGrid" Grid.Row="1" Background="#FBFBFB"/>
+			<Button x:Name="btnNext" Content="&gt;&gt;" HorizontalAlignment="Left" Height="21.5" Margin="314.5,18.5,0,0" Grid.Row="2" VerticalAlignment="Top" Width="73.5" ToolTip="Next Page"/>
+			<Canvas x:Name="contentCanvas" Margin="0" Grid.Row="1">
+				<StackPanel x:Name="pagesPanel" Canvas.Left="0" Canvas.Top="0" Orientation="Horizontal" Height="{Binding ActualHeight, ElementName=contentCanvas}">
+					<Border BorderThickness="0" Width="{Binding ActualWidth, ElementName=contentCanvas}" Background="#FFFFB5FC">
+						<TextBlock TextWrapping="Wrap" Text="01" FontFamily="Sucharaka Font" FontSize="133.333" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+					</Border>
+					<Border BorderThickness="0" Width="{Binding ActualWidth, ElementName=contentCanvas}" Background="#FFFFD2D2">
+						<TextBlock TextWrapping="Wrap" Text="02" FontFamily="Sucharaka Font" FontSize="133.333" Margin="118.986,110.328" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+					</Border>
+					<Border BorderThickness="0" Width="{Binding ActualWidth, ElementName=contentCanvas}" Background="#FFC9FFB9">
+						<TextBlock TextWrapping="Wrap" Text="03" FontFamily="Sucharaka Font" FontSize="133.333" Margin="118.986,110.328" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+					</Border>
+					<Border BorderThickness="0" Width="{Binding ActualWidth, ElementName=contentCanvas}" Background="#FFAFDBFF">
+						<TextBlock TextWrapping="Wrap" Text="04" FontFamily="Sucharaka Font" FontSize="133.333" Margin="118.986,110.328" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+					</Border>
+				</StackPanel>
+			</Canvas>
+			<Button x:Name="btnPrev" Content="&lt;&lt;" HorizontalAlignment="Left" Height="21.5" Margin="10,0,0,10" Grid.Row="2" VerticalAlignment="Bottom" Width="73.5" ToolTip="Previous Page"/>
+			<Button x:Name="btnLast" Content="&gt;&gt;&gt;" HorizontalAlignment="Left" Height="21.5" Margin="236,18.5,0,0" Grid.Row="2" VerticalAlignment="Top" Width="73.5" ToolTip="Last Page"/>
+			<Button x:Name="btnFirst" Content="&lt;&lt;&lt;" HorizontalAlignment="Left" Height="21.5" Margin="88.5,18.5,0,0" Grid.Row="2" VerticalAlignment="Top" Width="73.5" ToolTip="First Page"/>
 		</Grid>
 	</Border>
 </Window>
