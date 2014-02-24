@@ -23,7 +23,7 @@ namespace Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const Int32 TransitionDuration = 500;
+        private const Int32 TransitionDuration = 300;
         private const Int32 WindowMargin = 0;
 
         private Storyboard pageTransitionStoryboard;
@@ -110,7 +110,7 @@ namespace Launcher
 
         #region Page Transition & Animation
 
-        private Int32 pageCount = 4;
+        private Int32 pageCount = 8;
         private Int32 activePageIndex;
 
         private void TransitionToPage(Int32 index, Int32 duration)

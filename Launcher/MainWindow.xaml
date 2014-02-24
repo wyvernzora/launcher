@@ -7,25 +7,31 @@
 		 x:Name="window" mc:Ignorable="d" x:Class="Launcher.MainWindow"
         Title="MainWindow" Height="520" Width="420"
         WindowStyle="None" ResizeMode="NoResize" 
-        Background ="Transparent" AllowsTransparency="True" SnapsToDevicePixels="True">
+        Background ="{x:Null}" AllowsTransparency="True" SnapsToDevicePixels="True">
 	<Window.Resources>
 		<SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
 		<SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
 		<SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
 		<BooleanToVisibilityConverter x:Key="BoolToVis" />
 	</Window.Resources>
-	<Border x:Name="wrapper" Margin="10" BorderThickness="1" BorderBrush="#FF838383">
+	<Border x:Name="wrapper" Margin="10" BorderThickness="1" 
+			BorderBrush="{DynamicResource Window.OuterBorderBrush}" 
+			Background="{DynamicResource BackgroundBrushDim}">
+		
 		<Border.Effect>
 			<DropShadowEffect ShadowDepth="0" Color="Black" BlurRadius="15"/>
 		</Border.Effect>
-		<Grid x:Name="mainGrid" Background="White">
+
+		<Grid x:Name="mainGrid">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="50"/>
 				<RowDefinition/>
 				<RowDefinition Height="50"/>
 			</Grid.RowDefinitions>
             
-			<Border x:Name="headerWrapper" Grid.Row="0" BorderThickness="0, 0, 0, 1" BorderBrush="#E5E5E5">
+			<Border x:Name="headerWrapper" Grid.Row="0" BorderThickness="0, 0, 0, 1" 
+				BorderBrush="{DynamicResource ForegroundBrushStroke}" 
+				Background="{DynamicResource BackgroundBrushLight}">
 				<Grid x:Name="headerGrid" Margin="0">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="50"/>
@@ -34,22 +40,22 @@
 					</Grid.ColumnDefinitions>
 					<Grid x:Name="searchBarGrid" Grid.Column="1" Margin="0" VerticalAlignment="Center">
 						<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="Search"
-							Foreground="#FF828282" FontSize="16" FontFamily="Segoe UI Semilight"
+							Foreground="{DynamicResource ForegroundBrushWeak}" FontSize="16" FontFamily="Segoe UI Semilight"
 							Margin="2,2" Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=SearchBox}"/>
-						<TextBox x:Name="SearchBox" TextWrapping="Wrap" Margin="0" VerticalAlignment="Center" FontSize="16" FontFamily="Segoe UI Semilight" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0"/>
+						<TextBox x:Name="SearchBox" TextWrapping="Wrap" Margin="0" VerticalAlignment="Center" FontSize="16" FontFamily="Segoe UI Semilight" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0" Foreground="{DynamicResource ForegroundBrushStrong}" SelectionBrush="{DynamicResource ForegroundBrushAccent}" CaretBrush="{DynamicResource ForegroundBrushStrong}"/>
 					</Grid>
 
-					<Button x:Name="menuButton" Grid.Column="2" Margin="0" Width="25" Height="25" Style="{DynamicResource BorderlessFadeInButton}" Background="{x:Null}" BorderBrush="{x:Null}">
+					<Button x:Name="menuButton" Grid.Column="2" Margin="0" Width="25" Height="25" Style="{DynamicResource BorderlessFadeInButton}" Background="{x:Null}" BorderBrush="{x:Null}" Focusable="False">
 						<Grid>
-							<Rectangle Fill="Black" HorizontalAlignment="Center" Height="4" Margin="0,0,0,12" VerticalAlignment="Center" Width="20" StrokeThickness="0"/>
-							<Rectangle Fill="Black" HorizontalAlignment="Center" Height="4" Margin="0" VerticalAlignment="Center" Width="20" StrokeThickness="0"/>
-							<Rectangle Fill="Black" HorizontalAlignment="Center" Height="4" Margin="0,12,0,0" VerticalAlignment="Center" Width="20" StrokeThickness="0"/>
+							<Rectangle Fill="{DynamicResource ForegroundBrushStrong}" HorizontalAlignment="Center" Height="4" Margin="0,0,0,12" VerticalAlignment="Center" Width="20" StrokeThickness="0"/>
+							<Rectangle Fill="{DynamicResource ForegroundBrushStrong}" HorizontalAlignment="Center" Height="4" Margin="0" VerticalAlignment="Center" Width="20" StrokeThickness="0"/>
+							<Rectangle Fill="{DynamicResource ForegroundBrushStrong}" HorizontalAlignment="Center" Height="4" Margin="0,12,0,0" VerticalAlignment="Center" Width="20" StrokeThickness="0"/>
 						</Grid>
 					</Button>
 
 					
-					<Ellipse HorizontalAlignment="Left" Height="13.416" Margin="21.083,15.917,0,0" StrokeThickness="2" VerticalAlignment="Top" Width="13.167" Stroke="#FF838383"/>
-					<Rectangle HorizontalAlignment="Left" Height="3.446" Margin="15.779,27.897,0,0" StrokeThickness="2" VerticalAlignment="Top" Width="10.016" Fill="#FF838383" RenderTransformOrigin="0.5,0.5" RadiusX="2" RadiusY="2">
+					<Ellipse HorizontalAlignment="Left" Height="13.416" Margin="21.083,15.917,0,0" StrokeThickness="2" VerticalAlignment="Top" Width="13.167" Stroke="{DynamicResource ForegroundBrushWeak}"/>
+					<Rectangle HorizontalAlignment="Left" Height="3.446" Margin="15.779,27.897,0,0" StrokeThickness="2" VerticalAlignment="Top" Width="10.016" Fill="{DynamicResource ForegroundBrushWeak}" RenderTransformOrigin="0.5,0.5" RadiusX="2" RadiusY="2">
 						<Rectangle.RenderTransform>
 							<TransformGroup>
 								<ScaleTransform/>
@@ -62,23 +68,35 @@
 				</Grid>
                 
 			</Border>
-			<Button x:Name="btnNext" Content="&gt;&gt;" HorizontalAlignment="Left" Height="21.5" Margin="314.5,18.5,0,0" Grid.Row="2" VerticalAlignment="Top" Width="73.5" ToolTip="Next Page"/>
 			<Canvas x:Name="contentCanvas" Margin="0" Grid.Row="1">
 				<StackPanel x:Name="pagesPanel" Canvas.Left="0" Canvas.Top="0" Orientation="Horizontal" Height="{Binding ActualHeight, ElementName=contentCanvas}">
-					<Border BorderThickness="0" Width="{Binding ActualWidth, ElementName=contentCanvas}" Background="#FFFFB5FC">
-						<TextBlock TextWrapping="Wrap" Text="01" FontFamily="Sucharaka Font" FontSize="133.333" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+					<Border BorderThickness="0" Width="{Binding ActualWidth, ElementName=contentCanvas}" Background="#00000000">
+						<TextBlock TextWrapping="Wrap" Text="01" FontFamily="Sucharaka Font" FontSize="133.333" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource ForegroundBrushWeak}"/>
 					</Border>
-					<Border BorderThickness="0" Width="{Binding ActualWidth, ElementName=contentCanvas}" Background="#FFFFD2D2">
-						<TextBlock TextWrapping="Wrap" Text="02" FontFamily="Sucharaka Font" FontSize="133.333" Margin="118.986,110.328" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+					<Border BorderThickness="0" Width="{Binding ActualWidth, ElementName=contentCanvas}" Background="#00000000">
+						<TextBlock TextWrapping="Wrap" Text="02" FontFamily="Sucharaka Font" FontSize="133.333" Margin="118.986,110.328" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource ForegroundBrushWeak}"/>
 					</Border>
-					<Border BorderThickness="0" Width="{Binding ActualWidth, ElementName=contentCanvas}" Background="#FFC9FFB9">
-						<TextBlock TextWrapping="Wrap" Text="03" FontFamily="Sucharaka Font" FontSize="133.333" Margin="118.986,110.328" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+					<Border BorderThickness="0" Width="{Binding ActualWidth, ElementName=contentCanvas}" Background="#00000000">
+						<TextBlock TextWrapping="Wrap" Text="03" FontFamily="Sucharaka Font" FontSize="133.333" Margin="118.986,110.328" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource ForegroundBrushWeak}"/>
 					</Border>
-					<Border BorderThickness="0" Width="{Binding ActualWidth, ElementName=contentCanvas}" Background="#FFAFDBFF">
-						<TextBlock TextWrapping="Wrap" Text="04" FontFamily="Sucharaka Font" FontSize="133.333" Margin="118.986,110.328" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+					<Border BorderThickness="0" Width="{Binding ActualWidth, ElementName=contentCanvas}" Background="#00000000">
+						<TextBlock TextWrapping="Wrap" Text="04" FontFamily="Sucharaka Font" FontSize="133.333" Margin="118.986,110.328" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource ForegroundBrushWeak}"/>
+					</Border>
+					<Border BorderThickness="0" Width="{Binding ActualWidth, ElementName=contentCanvas}" Background="#00000000">
+						<TextBlock TextWrapping="Wrap" Text="05" FontFamily="Sucharaka Font" FontSize="133.333" Margin="118.986,110.328" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource ForegroundBrushWeak}"/>
+					</Border>
+					<Border BorderThickness="0" Width="{Binding ActualWidth, ElementName=contentCanvas}" Background="#00000000">
+						<TextBlock TextWrapping="Wrap" Text="06" FontFamily="Sucharaka Font" FontSize="133.333" Margin="118.986,110.328" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource ForegroundBrushWeak}"/>
+					</Border>
+					<Border BorderThickness="0" Width="{Binding ActualWidth, ElementName=contentCanvas}" Background="#00000000">
+						<TextBlock TextWrapping="Wrap" Text="07" FontFamily="Sucharaka Font" FontSize="133.333" Margin="118.986,110.328" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource ForegroundBrushWeak}"/>
+					</Border>
+					<Border BorderThickness="0" Width="{Binding ActualWidth, ElementName=contentCanvas}" Background="#00000000">
+						<TextBlock TextWrapping="Wrap" Text="08" FontFamily="Sucharaka Font" FontSize="133.333" Margin="118.986,110.328" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource ForegroundBrushWeak}"/>
 					</Border>
 				</StackPanel>
 			</Canvas>
+			<Button x:Name="btnNext" Content="&gt;&gt;" HorizontalAlignment="Left" Height="21.5" Margin="314.5,18.5,0,0" Grid.Row="2" VerticalAlignment="Top" Width="73.5" ToolTip="Next Page"/>
 			<Button x:Name="btnPrev" Content="&lt;&lt;" HorizontalAlignment="Left" Height="21.5" Margin="10,0,0,10" Grid.Row="2" VerticalAlignment="Bottom" Width="73.5" ToolTip="Previous Page"/>
 			<Button x:Name="btnLast" Content="&gt;&gt;&gt;" HorizontalAlignment="Left" Height="21.5" Margin="236,18.5,0,0" Grid.Row="2" VerticalAlignment="Top" Width="73.5" ToolTip="Last Page"/>
 			<Button x:Name="btnFirst" Content="&lt;&lt;&lt;" HorizontalAlignment="Left" Height="21.5" Margin="88.5,18.5,0,0" Grid.Row="2" VerticalAlignment="Top" Width="73.5" ToolTip="First Page"/>
