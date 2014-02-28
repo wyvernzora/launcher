@@ -57,8 +57,8 @@ namespace Launcher
                 var targetPage = activePageIndex - count;
                 if (targetPage < 0)
                     targetPage = 0;
-                if (targetPage >= pageCount)
-                    targetPage = pageCount - 1;
+                if (targetPage >= pagesPanel.PageCount)
+                    targetPage = pagesPanel.PageCount - 1;
 
                 TransitionToPage(targetPage, TransitionDuration);
             };
@@ -66,7 +66,7 @@ namespace Launcher
             // Temporary
             btnNext.Click += (@s, e) =>
             {
-                if (activePageIndex < pageCount - 1)
+                if (activePageIndex < pagesPanel.PageCount - 1)
                     TransitionToPage(activePageIndex + 1, TransitionDuration);
             };
             btnPrev.Click += (@s, e) =>
@@ -74,7 +74,7 @@ namespace Launcher
                 if (activePageIndex > 0)
                     TransitionToPage(activePageIndex - 1, TransitionDuration);
             };
-            btnLast.Click += (@s, e) => TransitionToPage(pageCount - 1, TransitionDuration);
+            btnLast.Click += (@s, e) => TransitionToPage(pagesPanel.PageCount - 1, TransitionDuration);
             btnFirst.Click += (@s, e) => TransitionToPage(0, TransitionDuration);
 
         }
@@ -110,7 +110,6 @@ namespace Launcher
 
         #region Page Transition & Animation
 
-        private Int32 pageCount = 3;
         private Int32 activePageIndex;
 
         private void TransitionToPage(Int32 index, Int32 duration)
@@ -121,7 +120,7 @@ namespace Launcher
             Storyboard.SetTargetProperty(animation, new PropertyPath("(Canvas.Left)"));
             Storyboard.SetTarget(animation, pagesPanel);
 
-            var easing = new CubicEase {EasingMode = EasingMode.EaseInOut};
+            var easing = new ExponentialEase {EasingMode = EasingMode.EaseInOut};
             animation.EasingFunction = easing;
 
             pageTransitionStoryboard = new Storyboard();

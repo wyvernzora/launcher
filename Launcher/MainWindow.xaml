@@ -72,6 +72,7 @@
 			<Canvas x:Name="contentCanvas" Margin="0" Grid.Row="1">
 				<PagedPanel:PagedPanel x:Name="pagesPanel" Canvas.Left="0" Canvas.Top="0" CellHeight="85" CellWidth="85" 
 				PageHeight="398" PageWidth="398" Background="Transparent">
+					
 					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="0" Width="72" Height="72" Background="#FF525283" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
 					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="1" Width="72" Height="72" Background="#FF975656" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
 					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="2" Width="72" Height="72" Background="#FF52836F" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
