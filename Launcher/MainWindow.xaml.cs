@@ -40,7 +40,7 @@ namespace Launcher
             // Initialize components and set up layout
             InitializeComponent();
             contentCanvas.ClipToBounds = true;
-
+            
             AttachEventHandlers();
         }
 
@@ -110,7 +110,7 @@ namespace Launcher
 
         #region Page Transition & Animation
 
-        private Int32 pageCount = 8;
+        private Int32 pageCount = 3;
         private Int32 activePageIndex;
 
         private void TransitionToPage(Int32 index, Int32 duration)
@@ -121,7 +121,7 @@ namespace Launcher
             Storyboard.SetTargetProperty(animation, new PropertyPath("(Canvas.Left)"));
             Storyboard.SetTarget(animation, pagesPanel);
 
-            var easing = new ExponentialEase {EasingMode = EasingMode.EaseInOut};
+            var easing = new CubicEase {EasingMode = EasingMode.EaseInOut};
             animation.EasingFunction = easing;
 
             pageTransitionStoryboard = new Storyboard();

@@ -3,17 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        
         <ResourceDictionary>
         
             <ResourceDictionary.MergedDictionaries>
                 <!-- Common theme resources, such as control templates -->
-                <ResourceDictionary x:Name="CommonResources" Source="Themes/Theme.Common.xaml"></ResourceDictionary>
+                <ResourceDictionary x:Name="CommonResources" Source="Themes/Theme.Common.xaml" />
                 <!-- Current theme resources, such as brushes -->
-                <ResourceDictionary x:Name="ThemeResources" Source="Themes/Theme.Dark.xaml"></ResourceDictionary>
+                <ResourceDictionary x:Name="ThemeResources" Source="Themes/Theme.Dark.xaml" />
+                <!-- Language resources -->
+                <ResourceDictionary x:Name="LocalizationResources" Source="Localizations/Localization.en-US.xaml" />
             </ResourceDictionary.MergedDictionaries>
             
-            
-        </ResourceDictionary> 
+        </ResourceDictionary>
        
     </Application.Resources>
 </Application>

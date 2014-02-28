@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    
+    <!-- Font family and sizes -->
+    <FontFamily x:Key="FontFamily">Segoe UI Semilight</FontFamily>
+    <Style x:Key="FontStyle.SearchBar">
+        <Setter Property="Control.FontSize" Value="12pt" />
+    </Style>
+    
+    <!-- Search Bar -->
+    <system:String x:Key="TextSearch">Поиск</system:String>
+    
+</ResourceDictionary>
