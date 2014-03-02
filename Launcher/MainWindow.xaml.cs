@@ -23,7 +23,7 @@ namespace Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const Int32 TransitionDuration = 300;
+        private const Int32 TransitionDuration = 200;
         private const Int32 WindowMargin = 0;
 
         private Storyboard pageTransitionStoryboard;
@@ -48,7 +48,9 @@ namespace Launcher
         {
             // Load/Unload
             Loaded += (@s, e) => SearchBox.Focus();
+#if !DEBUG
             Deactivated += (@s, e) => Close();
+#endif
 
             // Page Transitions
             contentCanvas.MouseWheel += (@s, e) =>
@@ -85,11 +87,19 @@ namespace Launcher
 
             // Adjust window location according to the cursor
             var cursor = Utilities.GetCursorPosition();
-            location.X = cursor.X - Width / 2;
-            location.Y = cursor.Y - Height;
 
             // Adjust location so that it is within the monitor
             var workArea = SystemParameters.WorkArea;
+
+            // Force window to the taskbar
+                // Different taskbar positions not handled (yet)
+                // TODO Handle different taskbar positions
+            if (workArea.Contains(cursor))
+                cursor = new Point(cursor.X, workArea.Bottom);
+
+            // Calculate the actual location of the window
+            location.X = cursor.X - Width / 2;
+            location.Y = cursor.Y - Height;
 
             // X axis
             if (location.X < workArea.X)
@@ -110,7 +120,7 @@ namespace Launcher
 
         #region Page Transition & Animation
 
-        private Int32 activePageIndex;
+        private Int32 activePageIndex = 1;
 
         private void TransitionToPage(Int32 index, Int32 duration)
         {

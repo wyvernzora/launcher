@@ -5,6 +5,7 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		 xmlns:PagedPanel="clr-namespace:Launcher.PagedPanel"
+		 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
 		 x:Name="window" mc:Ignorable="d" x:Class="Launcher.MainWindow"
         Title="MainWindow" Height="520" Width="420"
         WindowStyle="None" ResizeMode="NoResize" 
@@ -70,25 +71,97 @@
                 
 			</Border>
 			<Canvas x:Name="contentCanvas" Margin="0" Grid.Row="1">
-				<PagedPanel:PagedPanel x:Name="pagesPanel" Canvas.Left="0" Canvas.Top="0" CellHeight="85" CellWidth="85" 
-				PageHeight="398" PageWidth="398" Background="Transparent">
+				<PagedPanel:PagedPanel x:Name="pagesPanel" Canvas.Left="-398" Canvas.Top="0" CellHeight="85" CellWidth="85" 
+					PageHeight="398" PageWidth="398" Background="Transparent" DragOpacity="0.6" DragScale="1.1">
 					
-					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="0" Width="72" Height="72" Background="#FF525283" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="1" Width="72" Height="72" Background="#FF975656" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="2" Width="72" Height="72" Background="#FF52836F" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="3" Width="72" Height="72" Background="#FF97568E" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="4" Width="72" Height="72" Background="#FF548352" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="5" Width="72" Height="72" Background="#FF979456" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="6" Width="72" Height="72" Background="#FF528383" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="7" Width="72" Height="72" Background="#FF567F97" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<Border PagedPanel:PagedPanel.Page="1" PagedPanel:PagedPanel.Index="0" Width="72" Height="72" Background="#FF525283" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<Border PagedPanel:PagedPanel.Page="1" PagedPanel:PagedPanel.Index="1" Width="72" Height="72" Background="#FF975656" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<Border PagedPanel:PagedPanel.Page="1" PagedPanel:PagedPanel.Index="2" Width="72" Height="72" Background="#FF52836F" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<Border PagedPanel:PagedPanel.Page="1" PagedPanel:PagedPanel.Index="3" Width="72" Height="72" Background="#FF97568E" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<Border PagedPanel:PagedPanel.Page="2" PagedPanel:PagedPanel.Index="0" Width="72" Height="72" Background="#FF548352" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<Border PagedPanel:PagedPanel.Page="2" PagedPanel:PagedPanel.Index="1" Width="72" Height="72" Background="#FF979456" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<Border PagedPanel:PagedPanel.Page="2" PagedPanel:PagedPanel.Index="2" Width="72" Height="72" Background="#FF528383" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<Border PagedPanel:PagedPanel.Page="2" PagedPanel:PagedPanel.Index="3" Width="72" Height="72" Background="#FF567F97" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="0" Width="72" Height="72" Background="#330000FF" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+						<i:Interaction.Behaviors>
+							<PagedPanel:PagedPanelDragBehavior/>
+						</i:Interaction.Behaviors>
+					</Border>
+					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="1" Width="72" Height="72" Background="#33FF0000" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+						<i:Interaction.Behaviors>
+							<PagedPanel:PagedPanelDragBehavior/>
+						</i:Interaction.Behaviors>
+					</Border>
+					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="2" Width="72" Height="72" Background="#3300FF97" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+						<i:Interaction.Behaviors>
+							<PagedPanel:PagedPanelDragBehavior/>
+						</i:Interaction.Behaviors>
+					</Border>
+					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="3" Width="72" Height="72" Background="#33FF00DC" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+						<i:Interaction.Behaviors>
+							<PagedPanel:PagedPanelDragBehavior/>
+						</i:Interaction.Behaviors>
+					</Border>
+					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="4" Width="72" Height="72" Background="#330AFF00" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+						<i:Interaction.Behaviors>
+							<PagedPanel:PagedPanelDragBehavior/>
+						</i:Interaction.Behaviors>
+					</Border>
+					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="5" Width="72" Height="72" Background="#33FFF300" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+						<i:Interaction.Behaviors>
+							<PagedPanel:PagedPanelDragBehavior/>
+						</i:Interaction.Behaviors>
+					</Border>
+					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="6" Width="72" Height="72" Background="#3300FFFF" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+						<i:Interaction.Behaviors>
+							<PagedPanel:PagedPanelDragBehavior/>
+						</i:Interaction.Behaviors>
+					</Border>
+					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="7" Width="72" Height="72" Background="#33FF8B00" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+						<i:Interaction.Behaviors>
+							<PagedPanel:PagedPanelDragBehavior/>
+						</i:Interaction.Behaviors>
+					</Border>
+					<Border PagedPanel:PagedPanel.Page="1" PagedPanel:PagedPanel.Index="0" Width="72" Height="72" Background="#330000FF" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
+						<Border.RenderTransform>
+							<TransformGroup>
+								<ScaleTransform ScaleY="1" ScaleX="-1"/>
+								<SkewTransform AngleY="0" AngleX="0"/>
+								<RotateTransform Angle="0"/>
+								<TranslateTransform/>
+							</TransformGroup>
+						</Border.RenderTransform>
+						<i:Interaction.Behaviors>
+							<PagedPanel:PagedPanelDragBehavior/>
+						</i:Interaction.Behaviors>
+					</Border>
+					<Border PagedPanel:PagedPanel.Page="1" PagedPanel:PagedPanel.Index="1" Width="72" Height="72" Background="#33FF0000" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+						<i:Interaction.Behaviors>
+							<PagedPanel:PagedPanelDragBehavior/>
+						</i:Interaction.Behaviors>
+					</Border>
+					<Border PagedPanel:PagedPanel.Page="1" PagedPanel:PagedPanel.Index="2" Width="72" Height="72" Background="#3300FF97" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+						<i:Interaction.Behaviors>
+							<PagedPanel:PagedPanelDragBehavior/>
+						</i:Interaction.Behaviors>
+					</Border>
+					<Border PagedPanel:PagedPanel.Page="1" PagedPanel:PagedPanel.Index="3" Width="72" Height="72" Background="#33FF00DC" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+						<i:Interaction.Behaviors>
+							<PagedPanel:PagedPanelDragBehavior/>
+						</i:Interaction.Behaviors>
+					</Border>
+					<Border PagedPanel:PagedPanel.Page="2" PagedPanel:PagedPanel.Index="0" Width="72" Height="72" Background="#330AFF00" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+						<i:Interaction.Behaviors>
+							<PagedPanel:PagedPanelDragBehavior/>
+						</i:Interaction.Behaviors>
+					</Border>
+					<Border PagedPanel:PagedPanel.Page="2" PagedPanel:PagedPanel.Index="1" Width="72" Height="72" Background="#33FFF300" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+						<i:Interaction.Behaviors>
+							<PagedPanel:PagedPanelDragBehavior/>
+						</i:Interaction.Behaviors>
+					</Border>
+					<Border PagedPanel:PagedPanel.Page="2" PagedPanel:PagedPanel.Index="2" Width="72" Height="72" Background="#3300FFFF" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+						<i:Interaction.Behaviors>
+							<PagedPanel:PagedPanelDragBehavior/>
+						</i:Interaction.Behaviors>
+					</Border>
+					<Border PagedPanel:PagedPanel.Page="2" PagedPanel:PagedPanel.Index="3" Width="72" Height="72" Background="#3300A1FF" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+						<i:Interaction.Behaviors>
+							<PagedPanel:PagedPanelDragBehavior/>
+						</i:Interaction.Behaviors>
+					</Border>
 				
 				</PagedPanel:PagedPanel>
 			</Canvas>

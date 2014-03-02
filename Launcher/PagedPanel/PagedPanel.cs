@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
+using System.Data.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace Launcher.PagedPanel
         private const Double DefaultDragScale = 1.0d;
         private const Double NormalOpacity = 1.0d;
         private const Double DefaultDragOpacity = 1.0d;
-        private const Double MinimumOpacity = 1.0d;
+        private const Double MinimumOpacity = 0.1d;
         private const Int32 NormalZIndex = 0;
         private const Int32 TransitionZIndex = 1;
         private const Int32 DragZIndex = Int32.MaxValue;
@@ -51,9 +52,6 @@ namespace Launcher.PagedPanel
 
         #region Fields
 
-        private Point dragStart;
-        private UIElement draggingElement;
-        private UIElement lastDraggedElement;
         private Boolean initRequired;
 
         private Int32 pageCount;
@@ -742,19 +740,23 @@ namespace Launcher.PagedPanel
                 var cell = GetCellRect(GetPage(child), GetIndex(child));
 
                 // Render it
-                //child.RenderTransform = CreateTransform(cell.X, cell.Y, NormalScale, NormalScale);
-                child.Arrange(cell);
+                child.Arrange(new Rect(0, 0, CellWidth, CellHeight));
+                child.RenderTransform = CreateTransform(cell.X, cell.Y, NormalScale, NormalScale);
+                //child.Arrange(cell);
             }
         }
 
         protected void UpdateFluidLayout(Boolean ease)
         {
-            
+            // For now, just update without transitions
+            InvalidateVisual();
         }
 
         #endregion
 
         #region Layout Helpers
+
+        #region Page/Cell -> Coordinates
 
         /// <summary>
         /// Gets the page rectangle.
@@ -810,6 +812,36 @@ namespace Launcher.PagedPanel
             return new Rect(x, y, CellWidth, CellHeight);
         }
 
+        #endregion
+
+        #region Coordinates -> Page/Cell
+
+        protected Int32 GetPageIndex(Point p)
+        {
+            if (Orientation == Orientation.Horizontal)
+                return (Int32)Math.Floor(p.X / PageWidth);
+            return (Int32) Math.Floor(p.Y / PageHeight);
+        }
+
+        protected Int32 GetCellIndex(Point p)
+        {
+            // Get the page index
+            var pageIndex = GetPageIndex(p);
+
+            // Correct p to be relative to the page grid
+            var pageGridRect = GetPageGridRect(pageIndex);
+            p.X -= pageGridRect.X;
+            p.Y -= pageGridRect.Y;
+
+            // Cell X and Y
+            var cellX = Math.Floor(p.X / CellWidth);
+            var cellY = Math.Floor(p.Y / CellHeight);
+
+            return (Int32)(cellX + cellY * pageGridSize.Width);
+        }
+
+        #endregion
+
         /// <summary>
         /// Creates tranfrorm for a UI element.
         /// </summary>
@@ -821,7 +853,7 @@ namespace Launcher.PagedPanel
         /// <returns></returns>
         protected TransformGroup CreateTransform(double translateX, double translateY, double scaleX, double scaleY, double rotationAngle = 0)
         {
-            var translate = new TranslateTransform() { X = translateX, Y = translateY };
+            var translate = new TranslateTransform { X = translateX, Y = translateY };
             var scale = new ScaleTransform(scaleX, scaleY);
             var rotate = new RotateTransform(rotationAngle);
 
@@ -831,6 +863,93 @@ namespace Launcher.PagedPanel
             group.Children.Add(translate);
 
             return group;
+        }
+
+        #endregion
+
+        #region Dragging
+
+        private Point dragStart;
+        private UIElement dragging;
+        private UIElement dragged;
+
+        internal void OnStartDrag(UIElement child, Point position)
+        {
+            if (child == null /* || !IsComposing*/)
+                return;
+
+            // Insert handling code into the dispatcher
+            Dispatcher.Invoke(new Action(() =>
+            {
+                child.Opacity = DragOpacity;
+                child.SetValue(ZIndexProperty, DragZIndex);
+                // Dragging point within the child element
+                dragStart = new Point(position.X * DragScale, position.Y * DragScale);
+                // Apply transform without moving the element
+                var translatePosition = child.TranslatePoint(new Point(0, 0), this);
+                child.RenderTransform = CreateTransform(translatePosition.X, translatePosition.Y, DragScale, DragScale);
+                // Capture further mouse events no matter what happens
+                child.CaptureMouse();
+                dragging = child;
+                dragged = null;
+            }));
+        }
+
+        internal void OnDrag(UIElement child, Point position, Point positionInParent)
+        {
+            if (child == null /* || !IsComposing */)
+                return;
+
+            // Insert handling code into the dispatcher
+            Dispatcher.Invoke(new Action(() =>
+            {
+                if (dragging != null)
+                {
+                    // Set up render transform to move the element
+                    dragging.RenderTransform = CreateTransform(
+                        positionInParent.X - dragStart.X,
+                        positionInParent.Y - dragStart.Y,
+                        DragScale, DragScale);
+
+                    // TODO Update Layout on move
+
+                }
+            }));
+        }
+
+        internal void OnEndDrag(UIElement child, Point position, Point positionInParent)
+        {
+            if (child == null || dragging == null /* || !IsComposing*/)
+                return;
+
+            // Insert handling code into the dispatcher
+            Dispatcher.Invoke(new Action(() =>
+            {
+                // Get current page/cell
+                var page = GetPageIndex(positionInParent);
+                var cell = GetCellIndex(positionInParent);
+
+                // TODO Check for existing items in that slot and moving stuff around
+
+                // TEMPORARY: Move the item to that slot
+                SetPage(child, page);
+                SetIndex(child, cell);
+                var cellRect = GetCellRect(page, cell);
+
+                // Set up render transform to move the element
+                dragging.RenderTransform = CreateTransform(
+                    cellRect.X, cellRect.Y,
+                    NormalScale, NormalScale);
+
+                // Reset opacity and such
+                child.Opacity = NormalOpacity;
+                child.SetValue(ZIndexProperty, TransitionZIndex);
+                child.ReleaseMouseCapture();
+
+                // Keep a reference to reset Z-Index
+                dragged = dragging;
+                dragging = null;
+            }));
         }
 
         #endregion
