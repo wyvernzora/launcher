@@ -255,6 +255,9 @@ namespace Launcher.PagedPanel
                     var positionInParent = e.GetPosition(panel);
                     panel.OnEndDrag(visual, position, positionInParent);
                 }
+
+                // Prevent the Click event from going through
+                e.Handled = true;
             }
         }
 

@@ -48,9 +48,8 @@ namespace Launcher
         {
             // Load/Unload
             Loaded += (@s, e) => SearchBox.Focus();
-#if !DEBUG
-            Deactivated += (@s, e) => Close();
-#endif
+            if (!Debugger.IsAttached) // For debugging purposes, disable auto-close
+                Deactivated += (@s, e) => Close();
 
             // Page Transitions
             contentCanvas.MouseWheel += (@s, e) =>

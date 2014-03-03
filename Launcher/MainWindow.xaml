@@ -33,7 +33,7 @@
             
 			<Border x:Name="headerWrapper" Grid.Row="0" BorderThickness="0, 0, 0, 1" 
 				BorderBrush="{DynamicResource ForegroundBrushStroke}" 
-				Background="{DynamicResource BackgroundBrushLight}">
+				Background="{DynamicResource BackgroundBrushLight}" d:IsLocked="True">
 				<Grid x:Name="headerGrid" Margin="0">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="50"/>
@@ -73,6 +73,12 @@
 			<Canvas x:Name="contentCanvas" Margin="0" Grid.Row="1">
 				<PagedPanel:PagedPanel x:Name="pagesPanel" Canvas.Left="-398" Canvas.Top="0" CellHeight="85" CellWidth="85" 
 					PageHeight="398" PageWidth="398" Background="Transparent" DragOpacity="0.6" DragScale="1.1">
+					<PagedPanel:PagedPanel.DragDropEasing>
+						<BackEase EasingMode="EaseOut" Amplitude="0.65"/>
+					</PagedPanel:PagedPanel.DragDropEasing>
+					<PagedPanel:PagedPanel.MovementEasing>
+						<BackEase EasingMode="EaseOut" Amplitude="0.35"/>
+					</PagedPanel:PagedPanel.MovementEasing>
 					
 					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="0" Width="72" Height="72" Background="#330000FF" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
 						<i:Interaction.Behaviors>

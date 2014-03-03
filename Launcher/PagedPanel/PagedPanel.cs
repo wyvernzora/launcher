@@ -28,9 +28,9 @@ namespace Launcher.PagedPanel
         private const Int32 NormalZIndex = 0;
         private const Int32 TransitionZIndex = 1;
         private const Int32 DragZIndex = Int32.MaxValue;
-        private const Int32 DefaultTransitionDuration = 400;
+        private const Int32 DefaultTransitionDuration = 300;
         private const Int32 FirstTimeTransitionDuration = 320;
-        private const Int32 DefaultNoEaseTransitionDuration = 200;
+        private const Int32 DefaultNoEaseTransitionDuration = 280;
 
         #endregion
 
@@ -865,6 +865,57 @@ namespace Launcher.PagedPanel
             return group;
         }
 
+        /// <summary>
+        /// Creates the transition animation for an element.
+        /// </summary>
+        /// <param name="element">Child element to move.</param>
+        /// <param name="position">New position of the child element.</param>
+        /// <param name="duration">Duration of the animation.</param>
+        /// <returns></returns>
+        protected Storyboard CreateTransition(UIElement element, Point position, TimeSpan time, EasingFunctionBase easing)
+        {
+            var duration = new Duration(time);
+
+            var transforms = (element.RenderTransform as TransformGroup).Children.ToArray();
+
+            // Animate along X axis
+            var tx = new DoubleAnimation {To = position.X, Duration = duration};
+            if (DragDropEasing != null)
+                tx.EasingFunction = easing;
+            Storyboard.SetTarget(tx, element);
+            Storyboard.SetTargetProperty(tx, new PropertyPath("(UIElement.RenderTransform).(TransformGroup.Children)[2].(TranslateTransform.X)"));
+
+            // Animate along Y axis
+            var ty = new DoubleAnimation {To = position.Y, Duration = duration};
+            if (DragDropEasing != null)
+                ty.EasingFunction = easing;
+            Storyboard.SetTarget(ty, element);
+            Storyboard.SetTargetProperty(ty, new PropertyPath("(UIElement.RenderTransform).(TransformGroup.Children)[2].(TranslateTransform.Y)"));
+
+            // Animate X axis scale
+            var sx = new DoubleAnimation {To = 1.0D, Duration = duration};
+            if (DragDropEasing != null)
+                sx.EasingFunction = easing;
+            Storyboard.SetTarget(sx, element);
+            Storyboard.SetTargetProperty(sx, new PropertyPath("(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"));
+
+            // Animate Y axis scale
+            var sy = new DoubleAnimation { To = 1.0D, Duration = duration };
+            if (DragDropEasing != null)
+                sy.EasingFunction = easing;
+            Storyboard.SetTarget(sy, element);
+            Storyboard.SetTargetProperty(sy, new PropertyPath("(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"));
+
+            // Assemble animation
+            var board = new Storyboard {Duration = duration};
+            board.Children.Add(tx);
+            board.Children.Add(ty);
+            board.Children.Add(sx);
+            board.Children.Add(sy);
+
+            return board;
+        }
+
         #endregion
 
         #region Dragging
@@ -928,6 +979,12 @@ namespace Launcher.PagedPanel
                 // Get current page/cell
                 var page = GetPageIndex(positionInParent);
                 var cell = GetCellIndex(positionInParent);
+                if (cell < 0 || cell >= pageGridSize.Width * pageGridSize.Height)
+                {
+                    // Cancel movement if cell is invalid
+                    page = GetPage(child);
+                    cell = GetIndex(child);
+                }
 
                 // TODO Check for existing items in that slot and moving stuff around
 
@@ -937,9 +994,12 @@ namespace Launcher.PagedPanel
                 var cellRect = GetCellRect(page, cell);
 
                 // Set up render transform to move the element
-                dragging.RenderTransform = CreateTransform(
-                    cellRect.X, cellRect.Y,
-                    NormalScale, NormalScale);
+                //dragging.RenderTransform = CreateTransform(
+                //    cellRect.X, cellRect.Y,
+                //    NormalScale, NormalScale);
+                
+                var transition = CreateTransition(dragging, new Point(cellRect.X, cellRect.Y),
+                    TimeSpan.FromMilliseconds(DefaultTransitionDuration), MovementEasing);
 
                 // Reset opacity and such
                 child.Opacity = NormalOpacity;
@@ -949,6 +1009,9 @@ namespace Launcher.PagedPanel
                 // Keep a reference to reset Z-Index
                 dragged = dragging;
                 dragging = null;
+
+                // Begin transition
+                transition.Begin();
             }));
         }
 
