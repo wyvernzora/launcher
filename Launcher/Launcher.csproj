@@ -57,8 +57,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="PagedPanel\PagedPanel.cs" />
-    <Compile Include="PagedPanel\PagedPanelDragBehavior.cs" />
+    <Compile Include="Panel\DelayScheduler.cs" />
+    <Compile Include="Panel\PanoramaPanel.cs" />
+    <Compile Include="Panel\PanoramaPanel.dp.cs" />
+    <Compile Include="Panel\PanoramaPanelDragBehavior.cs" />
+    <Compile Include="Panel\PanoramaPanelPage.cs" />
     <Compile Include="Utilities.cs" />
     <Page Include="Localizations\Localization.ru-RU.xaml">
       <Generator>MSBuild:Compile</Generator>

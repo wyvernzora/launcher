@@ -4,8 +4,8 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		 xmlns:PagedPanel="clr-namespace:Launcher.PagedPanel"
 		 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+		 xmlns:Panel="clr-namespace:Launcher.Panel"
 		 x:Name="window" mc:Ignorable="d" x:Class="Launcher.MainWindow"
         Title="MainWindow" Height="520" Width="420"
         WindowStyle="None" ResizeMode="NoResize" 
@@ -71,105 +71,96 @@
                 
 			</Border>
 			<Canvas x:Name="contentCanvas" Margin="0" Grid.Row="1">
-				<PagedPanel:PagedPanel x:Name="pagesPanel" Canvas.Left="-398" Canvas.Top="0" CellHeight="85" CellWidth="85" 
-					PageHeight="398" PageWidth="398" Background="Transparent" DragOpacity="0.6" DragScale="1.1">
-					<PagedPanel:PagedPanel.DragDropEasing>
-						<BackEase EasingMode="EaseOut" Amplitude="0.65"/>
-					</PagedPanel:PagedPanel.DragDropEasing>
-					<PagedPanel:PagedPanel.MovementEasing>
+				<Panel:PanoramaPanel x:Name="panorama" PageHeight="398" PageWidth="398" CellHeight="90" Canvas.Left="0" Canvas.Top="0" CellWidth="90" DragOpacity="0.8" DragScale="1.05">
+					<Panel:PanoramaPanel.Easing>
 						<BackEase EasingMode="EaseOut" Amplitude="0.35"/>
-					</PagedPanel:PagedPanel.MovementEasing>
-					
-					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="0" Width="72" Height="72" Background="#330000FF" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-						<i:Interaction.Behaviors>
-							<PagedPanel:PagedPanelDragBehavior/>
-						</i:Interaction.Behaviors>
-					</Border>
-					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="1" Width="72" Height="72" Background="#33FF0000" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-						<i:Interaction.Behaviors>
-							<PagedPanel:PagedPanelDragBehavior/>
-						</i:Interaction.Behaviors>
-					</Border>
-					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="2" Width="72" Height="72" Background="#3300FF97" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-						<i:Interaction.Behaviors>
-							<PagedPanel:PagedPanelDragBehavior/>
-						</i:Interaction.Behaviors>
-					</Border>
-					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="3" Width="72" Height="72" Background="#33FF00DC" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-						<i:Interaction.Behaviors>
-							<PagedPanel:PagedPanelDragBehavior/>
-						</i:Interaction.Behaviors>
-					</Border>
-					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="4" Width="72" Height="72" Background="#330AFF00" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-						<i:Interaction.Behaviors>
-							<PagedPanel:PagedPanelDragBehavior/>
-						</i:Interaction.Behaviors>
-					</Border>
-					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="5" Width="72" Height="72" Background="#33FFF300" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-						<i:Interaction.Behaviors>
-							<PagedPanel:PagedPanelDragBehavior/>
-						</i:Interaction.Behaviors>
-					</Border>
-					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="6" Width="72" Height="72" Background="#3300FFFF" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-						<i:Interaction.Behaviors>
-							<PagedPanel:PagedPanelDragBehavior/>
-						</i:Interaction.Behaviors>
-					</Border>
-					<Border PagedPanel:PagedPanel.Page="0" PagedPanel:PagedPanel.Index="7" Width="72" Height="72" Background="#33FF8B00" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-						<i:Interaction.Behaviors>
-							<PagedPanel:PagedPanelDragBehavior/>
-						</i:Interaction.Behaviors>
-					</Border>
-					<Border PagedPanel:PagedPanel.Page="1" PagedPanel:PagedPanel.Index="0" Width="72" Height="72" Background="#330000FF" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
-						<Border.RenderTransform>
-							<TransformGroup>
-								<ScaleTransform ScaleY="1" ScaleX="-1"/>
-								<SkewTransform AngleY="0" AngleX="0"/>
-								<RotateTransform Angle="0"/>
-								<TranslateTransform/>
-							</TransformGroup>
-						</Border.RenderTransform>
-						<i:Interaction.Behaviors>
-							<PagedPanel:PagedPanelDragBehavior/>
-						</i:Interaction.Behaviors>
-					</Border>
-					<Border PagedPanel:PagedPanel.Page="1" PagedPanel:PagedPanel.Index="1" Width="72" Height="72" Background="#33FF0000" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-						<i:Interaction.Behaviors>
-							<PagedPanel:PagedPanelDragBehavior/>
-						</i:Interaction.Behaviors>
-					</Border>
-					<Border PagedPanel:PagedPanel.Page="1" PagedPanel:PagedPanel.Index="2" Width="72" Height="72" Background="#3300FF97" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-						<i:Interaction.Behaviors>
-							<PagedPanel:PagedPanelDragBehavior/>
-						</i:Interaction.Behaviors>
-					</Border>
-					<Border PagedPanel:PagedPanel.Page="1" PagedPanel:PagedPanel.Index="3" Width="72" Height="72" Background="#33FF00DC" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-						<i:Interaction.Behaviors>
-							<PagedPanel:PagedPanelDragBehavior/>
-						</i:Interaction.Behaviors>
-					</Border>
-					<Border PagedPanel:PagedPanel.Page="2" PagedPanel:PagedPanel.Index="0" Width="72" Height="72" Background="#330AFF00" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-						<i:Interaction.Behaviors>
-							<PagedPanel:PagedPanelDragBehavior/>
-						</i:Interaction.Behaviors>
-					</Border>
-					<Border PagedPanel:PagedPanel.Page="2" PagedPanel:PagedPanel.Index="1" Width="72" Height="72" Background="#33FFF300" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-						<i:Interaction.Behaviors>
-							<PagedPanel:PagedPanelDragBehavior/>
-						</i:Interaction.Behaviors>
-					</Border>
-					<Border PagedPanel:PagedPanel.Page="2" PagedPanel:PagedPanel.Index="2" Width="72" Height="72" Background="#3300FFFF" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-						<i:Interaction.Behaviors>
-							<PagedPanel:PagedPanelDragBehavior/>
-						</i:Interaction.Behaviors>
-					</Border>
-					<Border PagedPanel:PagedPanel.Page="2" PagedPanel:PagedPanel.Index="3" Width="72" Height="72" Background="#3300A1FF" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-						<i:Interaction.Behaviors>
-							<PagedPanel:PagedPanelDragBehavior/>
-						</i:Interaction.Behaviors>
-					</Border>
+					</Panel:PanoramaPanel.Easing>
+					<Panel:PanoramaPanelPage>
+						<Border Width="72" Height="72" Background="#33FFF300" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+							<i:Interaction.Behaviors>
+								<Panel:PanoramaPanelDragBehavior/>
+							</i:Interaction.Behaviors>
+						</Border>
+						<Border Width="72" Height="72" Background="#3300FFFF" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+							<i:Interaction.Behaviors>
+								<Panel:PanoramaPanelDragBehavior/>
+							</i:Interaction.Behaviors>
+						</Border>
+						<Border Width="72" Height="72" Background="#33FF8B00" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+							<i:Interaction.Behaviors>
+								<Panel:PanoramaPanelDragBehavior/>
+							</i:Interaction.Behaviors>
+						</Border>
+						<Border Width="72" Height="72" Background="#330000FF" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+							<i:Interaction.Behaviors>
+								<Panel:PanoramaPanelDragBehavior/>
+							</i:Interaction.Behaviors>
+						</Border>
+						<Border Width="72" Height="72" Background="#33FF0000" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+							<i:Interaction.Behaviors>
+								<Panel:PanoramaPanelDragBehavior/>
+							</i:Interaction.Behaviors>
+						</Border>
+						<Border Width="72" Height="72" Background="#3300FF97" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+							<i:Interaction.Behaviors>
+								<Panel:PanoramaPanelDragBehavior/>
+							</i:Interaction.Behaviors>
+						</Border>
+						<Border Width="72" Height="72" Background="#33FF00DC" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+							<i:Interaction.Behaviors>
+								<Panel:PanoramaPanelDragBehavior/>
+							</i:Interaction.Behaviors>
+						</Border>
+                        <Border Width="72" Height="72" Background="#330AFF00" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                        	<i:Interaction.Behaviors>
+                        		<Panel:PanoramaPanelDragBehavior/>
+                        	</i:Interaction.Behaviors>
+                        </Border>
+                        <Border Width="72" Height="72" Background="#330000FF" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                        	<i:Interaction.Behaviors>
+                        		<Panel:PanoramaPanelDragBehavior/>
+                        	</i:Interaction.Behaviors>
+                        </Border>
+                    </Panel:PanoramaPanelPage>
+                    <Panel:PanoramaPanelPage>
+                        <Border Width="72" Height="72" Background="#33FF0000" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                        	<i:Interaction.Behaviors>
+                        		<Panel:PanoramaPanelDragBehavior/>
+                        	</i:Interaction.Behaviors>
+                        </Border>
+					    <Border  Width="72" Height="72" Background="#3300FF97" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+					    	<i:Interaction.Behaviors>
+					    		<Panel:PanoramaPanelDragBehavior/>
+					    	</i:Interaction.Behaviors>
+					    </Border>
+					    <Border Width="72" Height="72" Background="#33FF00DC" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+					    	<i:Interaction.Behaviors>
+					    		<Panel:PanoramaPanelDragBehavior/>
+					    	</i:Interaction.Behaviors>
+					    </Border>
+					    <Border Width="72" Height="72" Background="#330AFF00" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+					    	<i:Interaction.Behaviors>
+					    		<Panel:PanoramaPanelDragBehavior/>
+					    	</i:Interaction.Behaviors>
+					    </Border>
+					    <Border Width="72" Height="72" Background="#33FFF300" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+					    	<i:Interaction.Behaviors>
+					    		<Panel:PanoramaPanelDragBehavior/>
+					    	</i:Interaction.Behaviors>
+					    </Border>
+					    <Border Width="72" Height="72" Background="#3300FFFF" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+					    	<i:Interaction.Behaviors>
+					    		<Panel:PanoramaPanelDragBehavior/>
+					    	</i:Interaction.Behaviors>
+					    </Border>
+					    <Border Width="72" Height="72" Background="#3300A1FF" BorderBrush="#FFB4B4B4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+					    	<i:Interaction.Behaviors>
+					    		<Panel:PanoramaPanelDragBehavior/>
+					    	</i:Interaction.Behaviors>
+					    </Border>
 				
-				</PagedPanel:PagedPanel>
+                    </Panel:PanoramaPanelPage>
+				</Panel:PanoramaPanel>
 			</Canvas>
 			<Button x:Name="btnNext" Content="&gt;&gt;" HorizontalAlignment="Left" Height="21.5" Margin="314.5,18.5,0,0" Grid.Row="2" VerticalAlignment="Top" Width="73.5" ToolTip="Next Page"/>
 			<Button x:Name="btnPrev" Content="&lt;&lt;" HorizontalAlignment="Left" Height="21.5" Margin="10,0,0,10" Grid.Row="2" VerticalAlignment="Bottom" Width="73.5" ToolTip="Previous Page"/>

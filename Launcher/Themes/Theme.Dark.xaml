@@ -35,7 +35,7 @@
     <SolidColorBrush x:Key="ForegroundBrushAccent" Color="#3399FF" />
 
     <!-- Background Brushes -->
-    <SolidColorBrush x:Key="BackgroundBrushLight" Color="#646464" />
+    <SolidColorBrush x:Key="BackgroundBrushLight" Color="#555555" />
     <SolidColorBrush x:Key="BackgroundBrushDim" Color="#4B4B4B" />
 
     <!-- Window outer border brush -->

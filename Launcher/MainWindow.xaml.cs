@@ -58,8 +58,10 @@ namespace Launcher
                 var targetPage = activePageIndex - count;
                 if (targetPage < 0)
                     targetPage = 0;
-                if (targetPage >= pagesPanel.PageCount)
-                    targetPage = pagesPanel.PageCount - 1;
+                if (targetPage >= panorama.Pages.Count)
+                    targetPage = panorama.Pages.Count - 1;
+
+                
 
                 TransitionToPage(targetPage, TransitionDuration);
             };
@@ -67,7 +69,7 @@ namespace Launcher
             // Temporary
             btnNext.Click += (@s, e) =>
             {
-                if (activePageIndex < pagesPanel.PageCount - 1)
+                if (activePageIndex < panorama.PageCount - 1)
                     TransitionToPage(activePageIndex + 1, TransitionDuration);
             };
             btnPrev.Click += (@s, e) =>
@@ -75,7 +77,7 @@ namespace Launcher
                 if (activePageIndex > 0)
                     TransitionToPage(activePageIndex - 1, TransitionDuration);
             };
-            btnLast.Click += (@s, e) => TransitionToPage(pagesPanel.PageCount - 1, TransitionDuration);
+            btnLast.Click += (@s, e) => TransitionToPage(panorama.PageCount - 1, TransitionDuration);
             btnFirst.Click += (@s, e) => TransitionToPage(0, TransitionDuration);
 
         }
@@ -127,7 +129,7 @@ namespace Launcher
 
             var animation = new DoubleAnimation(index * -contentCanvas.ActualWidth, animationDuration);
             Storyboard.SetTargetProperty(animation, new PropertyPath("(Canvas.Left)"));
-            Storyboard.SetTarget(animation, pagesPanel);
+            Storyboard.SetTarget(animation, panorama);
 
             var easing = new ExponentialEase {EasingMode = EasingMode.EaseInOut};
             animation.EasingFunction = easing;
